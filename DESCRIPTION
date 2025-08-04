@@ -1,18 +1,40 @@
 Package: tpmTools
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Third Party Monitoring Tools
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Tim", "Essam",
+      email = "tim.essam@gmail.com",
       role = c("aut", "cre")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Description: Provides helper functions and standardized objects for Third Party Monitoring (TPM) tasks, including reporting tools, table formatting, and data preparation workflows.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/tessam30/tpmTools
 BugReports: https://github.com/tessam30/tpmTools/issues
+Depends: 
+    R (>= 3.5)
+RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    cli,
+    gt,
+    magrittr,
+    purrr,
+    readxl,
+    rlang,
+    tibble,
+    fs,
+    googlesheets4,
+    stringr
+Suggests:
+  testthat (>= 3.0.0),
+  knitr,
+  rmarkdown,
+  ggplot2    
+Remotes:
+    USAID-OHA-SI/glitr, 
+    USAID-OHA-SI/gtayblr
