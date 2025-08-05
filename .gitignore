@@ -1,8 +1,17 @@
-.Rproj.user
+# R-specific
 .Rhistory
 .RData
 .Ruserdata
-.Rdata
-.httr-oauth
+
+# RStudio-specific
+.Rproj.user/
+*.Rproj
+
+# macOS
 .DS_Store
-.quarto
+
+# Windows
+Thumbs.db
+
+# OAuth tokens / secrets
+.httr-oauth
