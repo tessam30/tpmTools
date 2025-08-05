@@ -1,4 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 importFrom(magrittr,"%>%")
 export("%>%")
-
+export(list_tpm_tools)
+S3method(print, tpm_tools_list)

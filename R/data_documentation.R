@@ -287,13 +287,14 @@
 #' @format A tibble with 5 rows and 3 variables:
 #' \describe{
 #'   \item{Indicator}{Description of the indicator used for workforce or service assessment.}
-#'   \item{SHC}{Minimum standard for Sub-Health Centers (e.g., ">90%").}
-#'   \item{PH/RH}{Minimum standard for Primary/Referral Hospitals. NA if not applicable.}
+#'   \item{SHC}{Minimum standard for Sub-Health Centers (e.g., ">90\%").}
+#'   \item{PH/RH}{Minimum standard for Primary/Referral Hospitals. \code{NA} if not applicable.}
 #' }
 #'
 #' @examples
 #' hw_assessment
 "hw_assessment"
+
 
 
 
