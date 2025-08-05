@@ -12,9 +12,6 @@ A tibble with 10 rows and 3 columns:
   \item{Max Score}{Maximum points achievable for the vignette. Most domains are scored out of 100; some may exceed 100, indicated as "100+".}
 }
 }
-\source{
-TPM HER Facility Monitoring Tools, Afghanistan, 2025.
-}
 \usage{
 qqm_content_scores
 }

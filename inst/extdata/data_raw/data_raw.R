@@ -1,5 +1,9 @@
 # Datasets
 
+
+# p4p indicators ----------------------------------------------------------
+
+
 p4p_indicators <- tibble::tribble(
   ~no.,                                                                                                  ~indicator,            ~indicator_short,
   1L,                                                                            "Total number of Antenatal Visits",                      "ANC",
@@ -18,6 +22,8 @@ p4p_indicators <- tibble::tribble(
 
 usethis::use_data(p4p_indicators, overwrite = TRUE)
 
+
+# hmis verification summary -----------------------------------------------
 
 # Verification of HMIS
 hmis_verif_summary <- tibble::tribble(
@@ -38,6 +44,8 @@ hmis_verif_summary <- tibble::tribble(
 usethis::use_data(hmis_verif_summary, overwrite = TRUE)
 
 
+# QQC structural ----------------------------------------------------------
+
 qqc_structural <- tibble::tribble(
   ~row,                   ~domain, ~points,
   1L,         "General Management", 14L,
@@ -57,6 +65,9 @@ qqc_structural <- tibble::tribble(
 
 usethis::use_data(qqc_structural, overwrite = TRUE)
 
+
+# ESS list ----------------------------------------------------------------
+
 ess_list <- tibble::tribble(
               ~ESS.Number,                                                                                    ~Description, ~HER,
                        1L,                       "Assessment and Management of Environmental and Social Risks and Impacts",   1L,
@@ -72,6 +83,9 @@ ess_list <- tibble::tribble(
               )
 
 usethis::use_data(ess_list, overwrite = TRUE)
+
+
+# qqm content -------------------------------------------------------------
 
 qqm_content_short <- tibble::tribble(
                                        ~qqm_content, ~max_score, ~bonus,
@@ -178,9 +192,6 @@ qqm_gt <-
 usethis::use_data(qqm_gt, overwrite = TRUE)
 
 
-
-library(gt)
-
 # Create the data
 qqm_calc <- tibble::tibble(
   Domain = c(
@@ -276,3 +287,67 @@ qqm_content_scores <-
   "10. Post partum haemorrhage – atonic uterus",                                     "PPH content of care quality",  "100"
 )
 usethis::use_data(qqm_content_scores, overwrite = TRUE)
+
+
+# HW assessment -----------------------------------------------------------
+# Health worker interviews and payroll inspection
+health_wf <- tibble::tribble(
+                                         ~component,                                                                                                         ~indicators,
+  "Health worker interviews and payroll inspection",                                    "Received salary for the past 3 months within 10 days at the end of each month.",
+  "Health worker interviews and payroll inspection",                                                                   "Means of salary payment (bank transfer or cash)",
+                         "Health worker interviews", "Received training on Gender-Based Violence (DH, PH, and RH only) in the past 3 months, or more than 3 months ago.",
+                         "Health worker interviews",                             "Level of satisfaction (1 = very dissatisfied; 4 = very satisfied) with 18 statements.",
+                  "Facility checklist / timesheets",               "Current and retrospective availability of health workers according to minimum standards of services",
+                  "Facility checklist / timesheets",                       "Availability of at least one female health worker in each facility on the day of the survey",
+                  "Facility checklist / timesheets",                                   "Availability of at least one female community health worker in each health post"
+  )
+usethis::use_data(health_wf, overwrite = TRUE)
+
+
+health_wf_gt <- health_wf %>%
+  mutate(indic = str_c(row_number(), "."), .by = component, .before = component) %>%
+  gt(groupname_col = "component") %>%
+  tab_header(
+    title = "Indicators included in the non QQM-Assessment"
+  ) %>%
+  cols_label(
+    indicators = "COMPONENT / Indicators",
+    indic = ""
+  ) %>%
+  cols_align(
+    align = "left",
+    columns = everything()
+  ) %>%
+  tab_style(
+    style = cell_text(v_align = "top"),
+    locations = cells_body(columns = everything())
+  ) %>%
+  si_gt_base()
+usethis::use_data(health_wf_gt, overwrite = TRUE)
+
+
+# Weights for HW assessments
+hw_assessment <- tibble::tribble(
+                                     ~Indicator,                   ~SHC, ~`PH/RH`,
+         "Availability of functional equipment",                 ">90%",   ">90%",
+  "Pharmaceuticals (current and retrospective)",                 ">90%",   ">90%",
+                      "Other than P4P services",                 ">90%",   "100%",
+                          "Hospital governance",                     NA,   ">95%",
+         "Provincial key staff (retrospective)", "70% (each key staff)",       "70% (each key staff)"
+  )
+usethis::use_data(hw_assessment, overwrite = TRUE)
+
+hw_assessment_gt <-
+  hw_assessment %>%
+  gt() %>%
+  tab_header(
+    title = "Minimum standards of services cut-offs for SHC and PH/RH"
+  ) %>%
+  cols_label(
+    Indicator = "Indicator",
+    SHC = "SHC",
+    `PH/RH` = "PH/RH"
+  ) %>%
+  sub_missing(missing_text = "not applicable") %>%
+  si_gt_base()
+usethis::use_data(hw_assessment_gt, overwrite = TRUE)

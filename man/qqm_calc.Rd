@@ -14,9 +14,6 @@ A data frame with 4 rows and 5 columns:
   \item{Example Score}{Illustrative example based on a sample facility's results}
 }
 }
-\source{
-TPM HER Facility Monitoring, Afghanistan, 2025.
-}
 \usage{
 qqm_calc
 }

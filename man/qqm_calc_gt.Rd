@@ -7,9 +7,6 @@
 \format{
 A `gt_tbl` object with 4 rows and 5 columns.
 }
-\source{
-TPM HER Facility Monitoring, Afghanistan, 2025.
-}
 \usage{
 qqm_calc_gt
 }

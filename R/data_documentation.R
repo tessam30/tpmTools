@@ -147,7 +147,6 @@
 #'
 #' The dataset supports the generation of a formatted `gt` table for inclusion in reporting outputs.
 #'
-#' @source TPM HER Facility Monitoring, Afghanistan, 2025.
 "qqm_calc"
 
 #' GT Table: QQM Scoring Process Summary at Facility Level
@@ -175,7 +174,6 @@
 #' The final row ("Overall QQM Score") is bolded to emphasize the composite nature of the scoring system:
 #' \deqn{Score = (0.4 × Structural) + (0.4 × Content) + (0.2 × Quality)}
 #'
-#' @source TPM HER Facility Monitoring, Afghanistan, 2025.
 #'
 #' @seealso \code{\link[gt]{gt}} for table creation and \code{qqm_calc} for the raw input data
 "qqm_calc_gt"
@@ -248,5 +246,67 @@
 #' The domains include both curative child health conditions (e.g., pneumonia, diarrhea), preventive services (e.g., growth monitoring),
 #' maternal care (e.g., labor, postnatal care, postpartum hemorrhage), and family planning counseling.
 #'
-#' @source TPM HER Facility Monitoring Tools, Afghanistan, 2025.
 "qqm_content_scores"
+
+
+#' Health Workforce Monitoring Indicators
+#'
+#' A dataset summarizing health workforce-related indicators used for monitoring service delivery and staff satisfaction.
+#' This data was compiled from health worker interviews, payroll inspections, and facility checklists.
+#'
+#' @format A tibble with 7 rows and 2 variables:
+#' \describe{
+#'   \item{component}{The data collection component or source (e.g., interviews, payroll, checklist)}
+#'   \item{indicators}{Indicator text describing the measured concept or question}
+#' }
+#'
+#' @examples
+#' health_wf
+"health_wf"
+
+#' Formatted Table: Health Workforce Indicators (Non-QQM)
+#'
+#' A pre-formatted `gt` table showing indicators used in the non-QQM Health Workforce Assessment.
+#' Indicators are grouped by data collection component (e.g., interviews, payroll inspection, facility checklist).
+#' Each group is preceded by a row number prefix for easier referencing.
+#'
+#' Styling includes grouped rows, vertical alignment for readability, and application of the `si_gt_base()` style.
+#'
+#' @format A `gt_tbl` object with grouped rows, custom header, aligned text, and styled for presentation.
+#'
+#' @examples
+#' health_wf_gt
+"health_wf_gt"
+
+
+#' Health Workforce Service Standard Cutoffs
+#'
+#' This dataset contains minimum service standard cutoff values used to assess health facilities by type.
+#' Values are defined separately for Sub-Health Centers (SHC) and Primary/Referral Hospitals (PH/RH).
+#'
+#' @format A tibble with 5 rows and 3 variables:
+#' \describe{
+#'   \item{Indicator}{Description of the indicator used for workforce or service assessment.}
+#'   \item{SHC}{Minimum standard for Sub-Health Centers (e.g., ">90%").}
+#'   \item{PH/RH}{Minimum standard for Primary/Referral Hospitals. NA if not applicable.}
+#' }
+#'
+#' @examples
+#' hw_assessment
+"hw_assessment"
+
+
+
+#' Formatted Table: HW Service Standard Cutoffs
+#'
+#' A pre-formatted `gt` table displaying the minimum service standard cutoffs for
+#' health workforce indicators across facility types. Useful for direct display in
+#' reports or dashboards.
+#'
+#' Missing values are shown as `"not applicable"` and styling follows the `si_gt_base()` theme.
+#'
+#' @format A `gt_tbl` object with custom header, missing text formatting, and styling applied.
+#'
+#' @examples
+#' hw_assessment_gt
+"hw_assessment_gt"

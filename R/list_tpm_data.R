@@ -12,6 +12,8 @@ list_tpm_tools <- function() {
     name = c(
       "ess_list",
       "hmis_verif_summary",
+      "health_wf",
+      "hw_assessment",
       "p4p_indicators",
       "qqc_structural",
       "qqm",
@@ -22,6 +24,8 @@ list_tpm_tools <- function() {
     description = c(
       "Environmental and Social Standards list and numbers applicable to HER",
       "HMIS verification indicator coverage by facility type",
+      "Health workforce indicators and definitions covered in non-QQM assessment",
+      "Minimum standards of services cut-offs for SHC and PR/RH",
       "P4P indicator listing with full and short names",
       "Structural domains and their weighting for QQM",
       "QQM domains (structure, content, quality)",
@@ -32,8 +36,10 @@ list_tpm_tools <- function() {
   )
 
   gt_tables <- tibble::tibble(
-    name = c("p4p_gt", "qqm_gt", "qqm_calc_gt"),
+    name = c("health_wf_gt", "hw_assessment_gt", "p4p_gt", "qqm_gt", "qqm_calc_gt"),
     description = c(
+      "Formatted gt table of health workforce indicators",
+      "Formatted gt table of health workforce minimum standards of services cut-offs",
       "Formatted gt table of P4P indicators",
       "Styled gt table of QQM components",
       "Display-ready table of calculated QQM scores"
