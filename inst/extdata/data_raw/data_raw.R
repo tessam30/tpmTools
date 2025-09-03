@@ -58,8 +58,8 @@ qqc_structural <- tibble::tribble(
   8L,                  "Maternity", 29L,
   9L,                        "EPI", 27L,
   10L,                       "ANC", 13L
-) %>% dplyr::mutate(total_points = dplyr::sum(points),
-             total_points_bhc = dplyr::sum(points[domain != "Laboratory"]),
+) %>% dplyr::mutate(total_points = sum(points),
+             total_points_bhc = sum(points[domain != "Laboratory"]),
              domain_label = paste0("Domain ", dplyr::row_number(), ": ", domain)
 )
 
@@ -90,7 +90,7 @@ usethis::use_data(ess_list, overwrite = TRUE)
 qqm_content_short <- tibble::tribble(
                                        ~qqm_content, ~max_score, ~bonus,
                                         "Pneumonia",       100L,     0L,
-                                         "Diarrhea",       100L,     0L,
+                                        "Diarrhoea",       100L,     0L,
                   "Growth Monitoring and Promotion",       100L,     0L,
                             "TB Patient Management",       100L,     0L,
                                             "Labor",       100L,     0L,
@@ -136,7 +136,7 @@ p4p_gt <-
     locations = gt::cells_title()
   ) %>%
   gtayblr::si_gt_base() %>%
-  adjust_row_padding(padding_setting = 2)
+  adjust_row_spacing(padding_setting = 2)
 usethis::use_data(p4p_gt, overwrite = TRUE)
 
 
@@ -146,7 +146,7 @@ usethis::use_data(p4p_gt, overwrite = TRUE)
 qqm <- tibble::tribble(
   ~`Structural.Quality.(Facility.checklist)`,    ~`Content.of.Care.(Vignettes)`,                                    ~`Quality.of.Care.(Exit.interviews)`,
   "General Management",                       "Pneumonia",                                "Outpatient care for sick child under 5",
-  "Hygiene",                       "Diarrhea", "Family planning services for women (incl. Satisfaction with services)",
+  "Hygiene",                       "Diarrhoea", "Family planning services for women (incl. Satisfaction with services)",
   "Out-Patient Department", "Growth Monitoring and Promotion",                                                                      NA,
   "Family Planning",                    "Tuberculosis",                                                                      NA,
   "Laboratory (NA for BHC)",                           "Labor",                                                                      NA,
@@ -309,25 +309,30 @@ health_wf <- tibble::tribble(
 usethis::use_data(health_wf, overwrite = TRUE)
 
 
-health_wf_gt <- health_wf %>%
-  mutate(indic = str_c(row_number(), "."), .by = component, .before = component) %>%
-  gt(groupname_col = "component") %>%
-  tab_header(
+health_wf_gt <- tpmTools::health_wf %>%
+  dplyr::mutate(
+    indic = stringr::str_c(dplyr::row_number(), "."),
+    .by = component,
+    .before = component
+  ) %>%
+  gt::gt(groupname_col = "component") %>%
+  gt::tab_header(
     title = "Indicators included in the non QQM-Assessment"
   ) %>%
-  cols_label(
+  gt::cols_label(
     indicators = "COMPONENT / Indicators",
     indic = ""
   ) %>%
-  cols_align(
+  gt::cols_align(
     align = "left",
-    columns = everything()
+    columns = gt::everything()
   ) %>%
-  tab_style(
-    style = cell_text(v_align = "top"),
-    locations = cells_body(columns = everything())
+  gt::tab_style(
+    style = gt::cell_text(v_align = "top"),
+    locations = gt::cells_body(columns = gt::everything())
   ) %>%
-  si_gt_base()
+  gtayblr::si_gt_base()
+
 usethis::use_data(health_wf_gt, overwrite = TRUE)
 
 
@@ -344,15 +349,15 @@ usethis::use_data(hw_assessment, overwrite = TRUE)
 
 hw_assessment_gt <-
   hw_assessment %>%
-  gt() %>%
-  tab_header(
+  gt::gt() %>%
+  gt::tab_header(
     title = "Minimum standards of services cut-offs for SHC and PH/RH"
   ) %>%
-  cols_label(
+  gt::cols_label(
     Indicator = "Indicator",
     SHC = "SHC",
     `PH/RH` = "PH/RH"
   ) %>%
-  sub_missing(missing_text = "not applicable") %>%
-  si_gt_base()
+  gt::sub_missing(missing_text = "not applicable") %>%
+  gtayblr::si_gt_base()
 usethis::use_data(hw_assessment_gt, overwrite = TRUE)
