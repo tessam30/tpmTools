@@ -10,6 +10,7 @@ p4p_indicators <- tibble::tribble(
   2L,                                                                            "Total number of Postnatal Visits",                      "PNC",
   3L,                                                                "Institutional deliveries excluding C-Section", "Institutional Deliveries",
   4L,                                            "Total number of Family Planning couple years of protection (CYP)",                      "CYP",
+  5L,                                                                        "Total number of Penta3 immunizations",                    "Penta3",
   6L,                                                                          "TT2+ for women of reproductive age",                     "TT2+",
   7L,                                                    "Number of sputum smear (+) TB cases successfully treated",                       "TB",
   8L, "Growth monitoring of under 2-year children and IYCF counselling for pregnant and lactating women (GMP/IYCF)",                      "GMP",
