@@ -146,7 +146,7 @@ usethis::use_data(p4p_gt, overwrite = TRUE)
 qqm <- tibble::tribble(
   ~`Structural.Quality.(Facility.checklist)`,    ~`Content.of.Care.(Vignettes)`,                                    ~`Quality.of.Care.(Exit.interviews)`,
   "General Management",                       "Pneumonia",                                "Outpatient care for sick child under 5",
-  "Hygiene",                       "Diarrhoea", "Family planning services for women (incl. Satisfaction with services)",
+  "Hygiene",                       "Diarrhea", "Family planning services for women (incl. Satisfaction with services)",
   "Out-Patient Department", "Growth Monitoring and Promotion",                                                                      NA,
   "Family Planning",                    "Tuberculosis",                                                                      NA,
   "Laboratory (NA for BHC)",                           "Labor",                                                                      NA,
