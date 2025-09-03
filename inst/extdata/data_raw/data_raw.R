@@ -58,9 +58,9 @@ qqc_structural <- tibble::tribble(
   8L,                  "Maternity", 29L,
   9L,                        "EPI", 27L,
   10L,                       "ANC", 13L
-) %>% dplyr::mutate(total_points = sum(points),
-             total_points_bhc = sum(points[domain != "Laboratory"]),
-             domain_label = paste0("Domain ", row_number(), ": ", domain)
+) %>% dplyr::mutate(total_points = dplyr::sum(points),
+             total_points_bhc = dplyr::sum(points[domain != "Laboratory"]),
+             domain_label = paste0("Domain ", dplyr::row_number(), ": ", domain)
 )
 
 usethis::use_data(qqc_structural, overwrite = TRUE)
@@ -161,26 +161,26 @@ usethis::use_data(qqm, overwrite = TRUE)
 
 
 qqm_gt <-
-  qqm %>%
-  gt() %>%
-  sub_missing(missing_text = "") %>%
-  tab_header(
-    title = "QQM Components and Domains",
+  tpmTools::qqm %>%
+  gt::gt() %>%
+  gt::sub_missing(missing_text = "") %>%
+  gt::tab_header(
+    title = "QQM Components and Domains"
   ) %>%
-  cols_label(
+  gt::cols_label(
     `Structural.Quality.(Facility.checklist)` = gt::md("Structural Quality<br>(Facility Checklist)"),
     `Content.of.Care.(Vignettes)` = gt::md("Content of Care<br>(Vignettes)"),
     `Quality.of.Care.(Exit.interviews)` = gt::md("Quality of Care<br>(Exit Interviews)")
   ) %>%
-  cols_align(
+  gt::cols_align(
     align = "left",
-    columns = everything()
+    columns = gt::everything()
   ) %>%
-  cols_width(
-    everything() ~ px(200)
+  gt::cols_width(
+    gt::everything() ~ gt::px(200)
   ) %>%
   gtayblr::si_gt_base() %>%
-  adjust_row_padding(padding_setting = "condensed") %>%
+  gtayblr::adjust_row_padding(padding_setting = "condensed") %>%
   gt::tab_style(
     style = gt::cell_borders(
       sides = "top",
@@ -189,6 +189,7 @@ qqm_gt <-
     ),
     locations = gt::cells_body(rows = TRUE)
   )
+
 usethis::use_data(qqm_gt, overwrite = TRUE)
 
 
@@ -230,27 +231,30 @@ usethis::use_data(qqm_calc, overwrite = TRUE)
 
 # Build the gt table
 qqm_calc_gt <-
-  qqm_calc %>%
-  gt() %>%
-  tab_header(
-    title = md("**Summary of QQM Scoring Process at Facility Level**")
+  tpmTools::qqm_calc %>%
+  gt::gt() %>%
+  gt::tab_header(
+    title = gt::md("**Summary of QQM Scoring Process at Facility Level**")
   ) %>%
-  cols_label(
+  gt::cols_label(
     Domain = "Domain",
     `Max Points` = "Max Points",
     Description = "Description",
     `Scoring Method` = "Scoring Method",
     `Example Score` = "Example Score"
   ) %>%
-  cols_align(align = "left", columns = everything()) %>%
-  cols_width(
-    Domain ~ px(100),
-    `Max Points` ~ px(120),
-    Description ~ px(300),
-    `Scoring Method` ~ px(200),
-    `Example Score` ~ px(150)
+  gt::cols_align(
+    align = "left",
+    columns = gt::everything()
   ) %>%
-  si_gt_base() %>%
+  gt::cols_width(
+    Domain ~ gt::px(100),
+    `Max Points` ~ gt::px(120),
+    Description ~ gt::px(300),
+    `Scoring Method` ~ gt::px(200),
+    `Example Score` ~ gt::px(150)
+  ) %>%
+  gtayblr::si_gt_base() %>%
   gt::tab_style(
     style = gt::cell_borders(
       sides = "top",
@@ -259,15 +263,16 @@ qqm_calc_gt <-
     ),
     locations = gt::cells_body(rows = TRUE)
   ) %>%
-  tab_style(
-    style = cell_text(weight = 600),
-    locations = cells_body(rows = nrow(qqm_calc))
+  gt::tab_style(
+    style = gt::cell_text(weight = 600),
+    locations = gt::cells_body(rows = nrow(tpmTools::qqm_calc))
   ) %>%
- tab_source_note(
+  gt::tab_source_note(
     source_note = gt::md("The same analysis is also performed on provincial level, by aggregating the points achieved by
-                         all health facilitiesin a province and dividing that by the maximum points multiplied by the
+                         all health facilities in a province and dividing that by the maximum points multiplied by the
                          total number of health facilities in that province.")
   )
+
 usethis::use_data(qqm_calc_gt, overwrite = TRUE)
 
 
@@ -276,7 +281,7 @@ qqm_content_scores <-
   tibble::tribble(
   ~`Content of Care Domain`,                                                     ~`Domain Name`,                    ~`Max Score`,
   "1. Respiratory Infection Pneumonia",                                        "Pneumonia content of care quality", "100",
-  "2. Diarrhea with Cat B dehydration",                                         "Diarrhea content of care quality",  "100",
+  "2. Diarrhea with Cat B dehydration",                                         "Diarrhoea content of care quality",  "100",
   "3. Growth monitoring and promotion",                  "Growth Monitoring and Promotion content of care quality",  "100",
   "4. Management of presumptive tuberculosis",                     "TB Patient Management content of care quality",  "100",
   "5. Labor",                                                                      "Labor content of care quality",  "100",
