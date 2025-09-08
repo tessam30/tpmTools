@@ -362,3 +362,70 @@ hw_assessment_gt <-
   gt::sub_missing(missing_text = "not applicable") %>%
   gtayblr::si_gt_base()
 usethis::use_data(hw_assessment_gt, overwrite = TRUE)
+
+
+
+# RED Flags Verification --------------------------------------------------
+
+
+red_flags_verif<- tibble::tibble(
+  Category = c(
+    "Data Management",
+    "Human Resources", "Human Resources", "Human Resources",
+    "Infrastructure",
+    "Protection & Ethics",
+    "Security",
+    "Service Disruption",
+    "Supply Chain / Pharmacy", "Supply Chain / Pharmacy"
+  ),
+  Red_Flag = c(
+    "Registers are not available for verification of HMIS data.",
+    "Staff are absent and did not notify the health facility management.",
+    "Staff report salaries not paid, payments delayed, payment shortfalls.",
+    "Minimum staffing is not met.",
+    "Health facility has non-functional sections.",
+    "Clients report abuse, exploitation, or mistreatment by health facility staff.",
+    "Theft incident at the health facility.",
+    "Health facility is closed during normal expected working hours.",
+    "Stock-out of essential medicine and nutrition supply (RUTF), selling medicines, patients given prescription to procure medication out of the facility.",
+    "Major violation of conditions affecting drug quality including drug storage."
+  )
+)
+
+usethis::use_data(red_flags_verif, overwrite = TRUE)
+
+red_flag_gt <-
+  red_flags_verif %>%
+  dplyr::group_by(Category) %>%
+  dplyr::mutate(
+    Display_Category = dplyr::if_else(dplyr::row_number() == 1, Category, "")
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::select(Display_Category, Red_Flag) %>%
+  gt::gt() %>%
+  gt::tab_header(
+    title = "Red Flags for Verification"
+  ) %>%
+  gt::cols_label(
+    Display_Category = "Category",
+    Red_Flag = "Red Flag"
+  ) %>%
+  gt::cols_align(
+    align = "left",
+    columns = gt::everything()
+  ) %>%
+  gtayblr::si_gt_base() %>%
+  gtayblr::adjust_row_padding(padding_setting = "condensed") %>%
+  gt::tab_style(
+    style = gt::cell_borders(
+      sides = "top",
+      color = "#E6E7E8",
+      weight = gt::px(1)
+    ),
+    locations = gt::cells_body(rows = TRUE)
+  ) %>%
+  gt::tab_style(
+    style = gt::cell_text(weight = "bold"),
+    locations = gt::cells_body(columns = Display_Category)
+  )
+usethis::use_data(red_flag_gt, overwrite = TRUE)

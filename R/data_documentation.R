@@ -311,3 +311,71 @@
 #' @examples
 #' hw_assessment_gt
 "hw_assessment_gt"
+
+
+#' Red Flags for Facility Monitoring
+#'
+#' This dataset contains a list of predefined "red flags" identified during health facility monitoring visits
+#' under the Health Emergency Response (HER) project. These red flags represent serious operational or
+#' compliance issues that require follow-up or escalation.
+#'
+#' @format A tibble with 10 rows and 1 column:
+#' \describe{
+#'   \item{red_flags_verif}{Character. Description of the red flag observed or reported at a health facility.}
+#' }
+#'
+#' @details
+#' Each row represents a specific type of red flag that may be encountered during verification visits. These include:
+#' \itemize{
+#'   \item Facility closures during expected working hours
+#'   \item Unreported staff absences
+#'   \item Missing HMIS registers
+#'   \item Client reports of abuse or mistreatment
+#'   \item Stockouts or mismanagement of medicines and therapeutic foods
+#'   \item Salary payment issues for health workers
+#'   \item Staffing shortfalls
+#'   \item Non-functional facility sections
+#'   \item Drug storage violations
+#'   \item Theft incidents at the facility
+#' }
+#'
+#' These red flags are used to flag facilities for additional supervision, documentation, or corrective actions.
+#'
+#' @source TPM HER Facility Monitoring Guidelines, Afghanistan, 2025.
+#'
+#' @examples
+#' data(red_flags_verif)
+#' print(red_flags_verif)
+"red_flags_verif"
+
+
+#' GT Table: Red Flags for Verification
+#'
+#' A pre-formatted `gt` table object displaying red flags encountered during health facility monitoring and verification
+#' exercises. The table organizes red flags into thematic categories such as Human Resources, Infrastructure,
+#' Protection & Ethics, and more.
+#'
+#' This table is intended for inclusion in analytical reports, dashboards, and stakeholder presentations as a
+#' clear and readable summary of key verification concerns.
+#'
+#' @format A `gt_tbl` object with 2 columns:
+#' \describe{
+#'   \item{Category}{Thematic category of the red flag. Displayed once per group.}
+#'   \item{Red Flag}{Description of the issue or anomaly encountered during monitoring.}
+#' }
+#'
+#' @details
+#' The `gt` table groups red flags by category using a non-repeating `Category` column (`Display_Category` in the raw data)
+#' and applies bold styling to improve legibility. Each category group is separated by a soft top border for visual clarity.
+#' Padding is adjusted using the custom `gtayblr::adjust_row_padding()` function to condense row height for compact display.
+#'
+#' This object is generated from the `red_flags_verif` dataset, which contains a full list of predefined verification red flags
+#' used in the Health Emergency Response (HER) project in Afghanistan.
+#'
+#' @source TPM HER Facility Monitoring Verification Framework, Afghanistan, 2025.
+#'
+#' @seealso \code{\link[gt]{gt}} for table generation, \code{red_flags_verif} for the input dataset.
+#'
+#' @examples
+#' red_flag_gt  # View the stylized red flag summary table
+"red_flag_gt"
