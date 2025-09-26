@@ -15,7 +15,7 @@ list_tpm_tools <- function() {
       "health_wf",
       "hw_assessment",
       "p4p_indicators",
-      "qqc_structural",
+      "qqm_structural",
       "qqm",
       "qqm_calc",
       "qqm_content_scores",

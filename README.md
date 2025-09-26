@@ -61,7 +61,7 @@ qqm_content_scores
 - **`ess_list`** – Environmental and Social Standards list for HER projects  
 - **`p4p_indicators`** – P4P indicator names and short codes  
 - **`hmis_verif_summary`** – Summary of verification data across facility types  
-- **`qqm`**, **`qqc_structural`**, and more...
+- **`qqm`**, **`qqm_structural`**, and more...
 
 ---
 

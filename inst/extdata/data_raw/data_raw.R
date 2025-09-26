@@ -45,9 +45,9 @@ hmis_verif_summary <- tibble::tribble(
 usethis::use_data(hmis_verif_summary, overwrite = TRUE)
 
 
-# QQC structural ----------------------------------------------------------
+# QQM structural ----------------------------------------------------------
 
-qqc_structural <- tibble::tribble(
+qqm_structural <- tibble::tribble(
   ~row,                   ~domain, ~points,
   1L,         "General Management", 14L,
   2L,                    "Hygiene", 34L,
@@ -64,7 +64,7 @@ qqc_structural <- tibble::tribble(
              domain_label = paste0("Domain ", dplyr::row_number(), ": ", domain)
 )
 
-usethis::use_data(qqc_structural, overwrite = TRUE)
+usethis::use_data(qqm_structural, overwrite = TRUE)
 
 
 # ESS list ----------------------------------------------------------------

@@ -81,9 +81,9 @@
 #' @source Quantified Quality Metrics (QQM) guidelines, HER project documentation.
 #'
 #' @examples
-#' data(qqc_structural)
-#' head(qqc_structural)
-"qqc_structural"
+#' data(qqm_structural)
+#' head(qqm_structural)
+"qqm_structural"
 
 #' QQM Quality of Care Indicators
 #'
