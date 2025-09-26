@@ -137,7 +137,7 @@ p4p_gt <-
     locations = gt::cells_title()
   ) %>%
   gtayblr::si_gt_base() %>%
-  adjust_row_spacing(padding_setting = 2)
+  tpmTools::adjust_row_spacing(padding_setting = 2)
 usethis::use_data(p4p_gt, overwrite = TRUE)
 
 
@@ -301,7 +301,7 @@ health_wf <- tibble::tribble(
                                          ~component,                                                                                                         ~indicators,
   "Health worker interviews and payroll inspection",                                    "Received salary for the past 3 months within 10 days at the end of each month.",
   "Health worker interviews and payroll inspection",                                                                   "Means of salary payment (bank transfer or cash)",
-                         "Health worker interviews", "Received training on Gender-Based Violence (DH, PH, and RH only) in the past 3 months, or more than 3 months ago.",
+                         "Health worker interviews", "Received training on Mother and Child Rights (DH, PH, and RH only) in the past 3 months, or more than 3 months ago.",
                          "Health worker interviews",                             "Level of satisfaction (1 = very dissatisfied; 4 = very satisfied) with 18 statements.",
                   "Facility checklist / timesheets",               "Current and retrospective availability of health workers according to minimum standards of services",
                   "Facility checklist / timesheets",                       "Availability of at least one female health worker in each facility on the day of the survey",
