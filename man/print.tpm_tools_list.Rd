@@ -12,5 +12,5 @@
 \item{...}{Additional arguments passed to [print()].}
 }
 \description{
-Nicely formats the grouped data, gt tables, and functions in the tpmTools package.
+Nicely formats the grouped data, gt tables, colors, and functions in the tpmTools package.
 }

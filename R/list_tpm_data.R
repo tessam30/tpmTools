@@ -1,6 +1,7 @@
-#' List data, gt tables, and functions in the tpmTools package
+#' List data, gt tables, colors, and functions in the tpmTools package
 #'
-#' Returns grouped summaries of data objects, preformatted `gt` tables, and exported functions.
+#' Returns grouped summaries of data objects, preformatted `gt` tables, color objects,
+#' and exported functions.
 #'
 #' @return An object of class `tpm_tools_list` with a custom print method.
 #' @export
@@ -46,6 +47,31 @@ list_tpm_tools <- function() {
     )
   )
 
+  color_tbl <- tibble::tibble(
+    name = c(
+      "tpm_red", "tpm_blue_dark", "tpm_blue_light",
+      "tpm_green_light", "tpm_green_dark", "tpm_green_mid",
+      "tpm_yellow", "tpm_maroon", "tpm_purple",
+      "tpm_gray_dark", "tpm_gray_mid", "tpm_gray_light",
+      "tpm_colors"
+    ),
+    description = c(
+      "TPM red (primary accent)",
+      "TPM dark blue (primary base)",
+      "TPM light blue",
+      "TPM light green",
+      "TPM dark green",
+      "TPM mid green",
+      "TPM yellow",
+      "TPM maroon",
+      "TPM purple",
+      "TPM dark gray",
+      "TPM mid gray",
+      "TPM light gray",
+      "Helper vector of all TPM colors (named hex codes)"
+    )
+  )
+
   function_tbl <- tibble::tibble(
     name = c(
       "add_arrow_column_gt",
@@ -77,17 +103,16 @@ list_tpm_tools <- function() {
     list(
       data_objects = data_objects,
       gt_tables = gt_tables,
+      colors = color_tbl,
       functions = function_tbl
     ),
     class = "tpm_tools_list"
   )
 }
 
-
-
 #' Print method for tpm_tools_list objects
 #'
-#' Nicely formats the grouped data, gt tables, and functions in the tpmTools package.
+#' Nicely formats the grouped data, gt tables, colors, and functions in the tpmTools package.
 #'
 #' @param x An object of class `tpm_tools_list` (as returned by [list_tpm_tools()]).
 #' @param ... Additional arguments passed to [print()].
@@ -102,10 +127,15 @@ print.tpm_tools_list <- function(x, ...) {
   cat("\n", cli::rule(left = "🖼 GT Tables", line = 2), "\n")
   print(x$gt_tables, n = Inf, row.names = FALSE)
 
+  cat("\n", cli::rule(left = "🎨 Colors", line = 2), "\n")
+  print(x$colors, n = Inf, row.names = FALSE)
+
   cat("\n", cli::rule(left = "🛠 Functions", line = 2), "\n")
   print(x$functions, n = Inf, row.names = FALSE)
 
   invisible(x)
 }
+
+
 
 

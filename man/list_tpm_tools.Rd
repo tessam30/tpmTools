@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_tpm_data.R
 \name{list_tpm_tools}
 \alias{list_tpm_tools}
-\title{List data, gt tables, and functions in the tpmTools package}
+\title{List data, gt tables, colors, and functions in the tpmTools package}
 \usage{
 list_tpm_tools()
 }
@@ -10,7 +10,8 @@ list_tpm_tools()
 An object of class `tpm_tools_list` with a custom print method.
 }
 \description{
-Returns grouped summaries of data objects, preformatted `gt` tables, and exported functions.
+Returns grouped summaries of data objects, preformatted `gt` tables, color objects,
+and exported functions.
 }
 \examples{
 list_tpm_tools()

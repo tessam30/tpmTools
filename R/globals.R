@@ -5,5 +5,11 @@ utils::globalVariables(c(
   "case_when",
   "enquo",
   "mutate",
-  "sym"
+  "sym",
+  "fill",
+  "par",
+  "rect",
+  "text",
+  "barplot",
+  "title"
 ))
