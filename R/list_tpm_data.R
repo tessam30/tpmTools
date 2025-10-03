@@ -56,10 +56,10 @@ list_tpm_tools <- function() {
       "tpm_colors"
     ),
     description = c(
-      "TPM red (primary accent)",
-      "TPM dark blue (primary base)",
-      "TPM light blue",
-      "TPM light green",
+      "TPM red",
+      "TPM dark blue (primary blue)",
+      "TPM light blue (primary blue light)",
+      "TPM light green (primary green light)",
       "TPM dark green",
       "TPM mid green",
       "TPM yellow",
