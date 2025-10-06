@@ -4,33 +4,49 @@
 \alias{tpm_pal_cont}
 \title{TPM Continuous Diverging Palettes}
 \usage{
-tpm_pal_cont(
-  palette = c("div_blue_red", "div_green_purple", "seq_blue", "seq_red"),
-  n = 256
-)
+tpm_pal_cont(palette = "div_green_purple", n = 256)
 }
 \arguments{
-\item{palette}{Character, either \code{"div_blue_red"} or \code{"div_green_purple"}.}
+\item{palette}{Character. One of:
+* `"div_blue_red"` – blue–white–red diverging palette
+* `"div_green_purple"` – green–white–purple diverging palette
+* `"seq_blue"` – sequential blues
+* `"seq_red"` – sequential reds
+Custom vectors of color hex codes can also be provided.}
 
-\item{n}{Number of colors to return (defaults to 256).}
+\item{n}{Integer. Number of colors to return (defaults to 256).}
 }
 \value{
-A character vector of hex colors.
+A character vector of hex color values.
 }
 \description{
-Generate continuous color ramps from TPM diverging palettes
-for use in ggplot2 and base R graphics.
+Generate continuous color ramps from TPM diverging and sequential palettes
+for use in ggplot2 scales and base R graphics.
+}
+\details{
+The function uses `grDevices::colorRampPalette()` to interpolate
+between base TPM colors, producing a smooth gradient suitable for
+continuous color scales.
 }
 \examples{
 \donttest{
-# Get 5 colors from each
+\dontrun{
+# Get 5 colors from each diverging palette
 tpm_pal_cont("div_blue_red", 5)
 tpm_pal_cont("div_green_purple", 5)
 
-# Example with ggplot2
+# Use with ggplot2
 library(ggplot2)
 ggplot(mtcars, aes(mpg, wt, color = mpg)) +
   geom_point(size = 4) +
   scale_color_gradientn(colors = tpm_pal_cont("div_blue_red"))
+
+# Custom sequential palette
+scale_color_gradientn(colors = tpm_pal_cont("seq_blue"))
+
+# Or provide your own color vector
+tpm_pal_cont(c("#00429d", "#ffffff", "#93003a"), 5)
 }
+}
+
 }

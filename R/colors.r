@@ -136,39 +136,67 @@ tpm_pal <- function(palette = c("cat", "seq_blue", "seq_red",
 
 #' TPM Continuous Diverging Palettes
 #'
-#' Generate continuous color ramps from TPM diverging palettes
-#' for use in ggplot2 and base R graphics.
+#' Generate continuous color ramps from TPM diverging and sequential palettes
+#' for use in ggplot2 scales and base R graphics.
 #'
-#' @param palette Character, either \code{"div_blue_red"} or \code{"div_green_purple"}.
-#' @param n Number of colors to return (defaults to 256).
-#' @return A character vector of hex colors.
-#' @examples \donttest{
-#' # Get 5 colors from each
+#' @param palette Character. One of:
+#'   * `"div_blue_red"` – blue–white–red diverging palette
+#'   * `"div_green_purple"` – green–white–purple diverging palette
+#'   * `"seq_blue"` – sequential blues
+#'   * `"seq_red"` – sequential reds
+#'   Custom vectors of color hex codes can also be provided.
+#' @param n Integer. Number of colors to return (defaults to 256).
+#'
+#' @return A character vector of hex color values.
+#'
+#' @details
+#' The function uses `grDevices::colorRampPalette()` to interpolate
+#' between base TPM colors, producing a smooth gradient suitable for
+#' continuous color scales.
+#'
+#' @examples
+#' \donttest{
+#' \dontrun{
+#' # Get 5 colors from each diverging palette
 #' tpm_pal_cont("div_blue_red", 5)
 #' tpm_pal_cont("div_green_purple", 5)
 #'
-#' # Example with ggplot2
+#' # Use with ggplot2
 #' library(ggplot2)
 #' ggplot(mtcars, aes(mpg, wt, color = mpg)) +
 #'   geom_point(size = 4) +
 #'   scale_color_gradientn(colors = tpm_pal_cont("div_blue_red"))
+#'
+#' # Custom sequential palette
+#' scale_color_gradientn(colors = tpm_pal_cont("seq_blue"))
+#'
+#' # Or provide your own color vector
+#' tpm_pal_cont(c("#00429d", "#ffffff", "#93003a"), 5)
 #' }
+#' }
+#'
 #' @export
-tpm_pal_cont <- function(palette = c("div_blue_red", "div_green_purple", "seq_blue", "seq_red"),
-                         n = 256) {
-  if (is.character(palette) && length(palette) == 1) {
-    palette <- match.arg(palette)
-    pal <- switch(palette,
-                  "div_blue_red"     = c(tpm_blue_light, "#FFFFFF", tpm_red),
-                  "div_green_purple" = c(tpm_green_light, "#FFFFFF", tpm_purple),
-                  "seq_blue"         = c(tpm_gray_light, tpm_blue_light, tpm_blue_dark),
-                  "seq_red"          = c("#fde0e2", "#f28b8e", tpm_red, "#7f1419"))
-  } else {
-    # treat as a custom vector of colors
-    pal <- palette
-  }
+
+tpm_pal_cont <- function(
+    palette = "div_green_purple",
+    n = 256
+) {
+  palette <- match.arg(
+    palette,
+    c("div_blue_red", "div_green_purple", "seq_blue", "seq_red")
+  )
+
+  pal <- switch(
+    palette,
+    "div_blue_red"     = c(tpm_blue_light, "#FFFFFF", tpm_red),
+    "div_green_purple" = c(tpm_green_light, "#FFFFFF", tpm_purple),
+    "seq_blue"         = c(tpm_gray_light, tpm_blue_light, tpm_blue_dark),
+    "seq_red"          = c("#fde0e2", "#f28b8e", tpm_red, "#7f1419")
+  )
+
   grDevices::colorRampPalette(pal)(n)
 }
+
 
 
 #' ggplot2 Scales using TPM Palettes
